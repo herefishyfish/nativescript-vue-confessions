@@ -27,21 +27,24 @@ watch(
 );
 
 const hearts: any[] = [];
-const circles = [{
-  delta: 0,
-  mesh: null,
-  speed: 0.01,
-  color: 0xd3d3d3,
-  radius: 1.5,
-  position: { x: 0, y: 0, z: -5 }
-}, {
-  delta: 0,
-  mesh: null,
-  speed: 0.01,
-  color: 0xd3d3d3,
-  radius: 0.5,
-  position: { x: 1, y: 1, z: -5 }
-}]
+const circles = [
+  {
+    delta: 0,
+    mesh: null,
+    speed: 0.01,
+    color: 0xd3d3d3,
+    radius: 1.5,
+    position: { x: 0, y: 0, z: -5 },
+  },
+  {
+    delta: 0,
+    mesh: null,
+    speed: 0.1,
+    color: 0xd3d3d3,
+    radius: 0.5,
+    position: { x: 1.5, y: 1.5, z: -5 },
+  },
+];
 const states = [
   {
     rotation: { x: 0, y: Math.PI, z: 0 },
@@ -273,13 +276,17 @@ const onReady = (args: LoadEventData) => {
   };
 
   const updateCircles = () => {
-    circles.forEach(circle => {
+    circles.forEach((circle) => {
       let mesh: THREE.Mesh;
       if (!circle.mesh) {
         const geometry = new THREE.CircleGeometry(circle.radius, 32);
         const material = new THREE.MeshBasicMaterial({ color: circle.color });
         const mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(circle.position.x, circle.position.y, circle.position.z);
+        mesh.position.set(
+          circle.position.x,
+          circle.position.y,
+          circle.position.z
+        );
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         material.transparent = true;
@@ -301,8 +308,8 @@ const onReady = (args: LoadEventData) => {
         circle.position.y + Math.cos(circle.delta) * 0.3,
         circle.position.z + Math.cos(circle.delta) * 0.3
       );
-    })
-  }
+    });
+  };
 
   const animate = (time: number) => {
     requestAnimationFrame(animate);
@@ -315,5 +322,5 @@ const onReady = (args: LoadEventData) => {
 };
 </script>
 <template>
-  <Canvas @ready="onReady"></Canvas>
+  <Canvas @ready="onReady" class="bg-green-100"></Canvas>
 </template>
