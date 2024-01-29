@@ -49,7 +49,7 @@ const states = [
   {
     rotation: { x: 0, y: Math.PI, z: 0 },
     scale: 3,
-    position: { x: 0, y: -0.6, z: 0 },
+    position: { x: 0, y: -0.8, z: 0 },
   },
   {
     rotation: { x: 0, y: 1, z: 0 },
@@ -221,12 +221,16 @@ const onReady = (args: LoadEventData) => {
       let mesh: THREE.Mesh;
       if (!hearts[i]) {
         const delta = Math.random() * 1;
-        const speed = Math.random() * 0.02 + 0.005;
+        let speed = Math.random() * 0.02 + 0.005;
+        if (Math.random() > 0.5) {
+          speed *= -1;
+        }
         const color = getRandomPinkColor();
         const size = Math.random() * 2 + 0.5;
         const geometry = new THREE.ShapeGeometry(heartShape);
         const material = new THREE.MeshBasicMaterial({ color });
         const mesh = new THREE.Mesh(geometry, material);
+        const spread = Math.random();
         const position = {
           x: Math.random() * (xRange.max - xRange.min) + xRange.min,
           y: Math.random() * (yRange.max - yRange.min) + yRange.min,
@@ -240,13 +244,13 @@ const onReady = (args: LoadEventData) => {
         material.opacity = 0.7;
 
         hearts.push({
-          direction: Math.random() > 0.5 ? 1 : -1,
           delta,
           mesh: mesh,
           speed,
           color,
           size,
           position,
+          spread,
         });
 
         scene.add(mesh);
@@ -259,19 +263,11 @@ const onReady = (args: LoadEventData) => {
       }
 
       hearts[i].delta += hearts[i].speed / 10;
-      if (hearts[i].direction === 1) {
-        mesh.position.set(
-          hearts[i].position.x + Math.sin(hearts[i].delta) * 0.3,
-          hearts[i].position.y + Math.cos(hearts[i].delta) * 0.3,
-          hearts[i].position.z + Math.cos(hearts[i].delta) * 0.3
-        );
-      } else {
-        mesh.position.set(
-          hearts[i].position.x - Math.sin(hearts[i].delta) * 0.3,
-          hearts[i].position.y - Math.cos(hearts[i].delta) * 0.3,
-          hearts[i].position.z - Math.cos(hearts[i].delta) * 0.3
-        );
-      }
+      mesh.position.set(
+        hearts[i].position.x + Math.sin(hearts[i].delta) * hearts[i].spread,
+        hearts[i].position.y + Math.cos(hearts[i].delta) * hearts[i].spread,
+        hearts[i].position.z + Math.cos(hearts[i].delta) * hearts[i].spread
+      );
     }
   };
 
@@ -322,5 +318,5 @@ const onReady = (args: LoadEventData) => {
 };
 </script>
 <template>
-  <Canvas @ready="onReady" class="bg-green-100"></Canvas>
+  <Canvas @ready="onReady" class="bg-green-50"></Canvas>
 </template>

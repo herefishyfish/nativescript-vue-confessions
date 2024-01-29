@@ -20,21 +20,30 @@ const onPagerLoaded = (args: LoadEventData) => {
 <template>
   <Pager @loaded="onPagerLoaded" height="100%" peaking="30" spacing="10">
     <PagerItem>
-      <Label class="font-bold text-center text-8xl text-stone-900">Vue!</Label>
+      <StackLayout verticalAlignment="center">
+        <Label class="card font-bold text-center text-8xl text-stone-900 m-0 p-0">Vue!</Label>
+      </StackLayout>
     </PagerItem>
     <PagerItem>
       <StackLayout>
-        <Label textWrap="true" class="font-bold text-3xl text-[#2b7750]">
+        <Label textWrap="true" class="font-bold text-3xl text-stone-900">
           <!-- Hello Vue from NativeScript -->
           Hello, Vue!
         </Label>
       </StackLayout>
     </PagerItem>
     <PagerItem>
-      <Label class="font-bold text-3xl text-blue-300">Third</Label>
+      <Label class="font-bold text-3xl text-stone-900">Third</Label>
     </PagerItem>
     <PagerItem>
-      <Label class="font-bold text-3xl text-blue-300">Fourth</Label>
+      <Label class="font-bold text-3xl text-stone-900">Fourth</Label>
     </PagerItem>
   </Pager>
 </template>
+
+<style>
+  .card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10;
+  }
+</style>
