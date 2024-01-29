@@ -44,6 +44,14 @@ const circles = [
     radius: 0.5,
     position: { x: 1.5, y: 1.5, z: -5 },
   },
+  {
+    delta: 0,
+    mesh: null,
+    speed: 0.1,
+    color: 0xd3d3d3,
+    radius: 0.5,
+    position: { x: -2.2, y: -2.2, z: -5 },
+  },
 ];
 const states = [
   {
@@ -61,7 +69,11 @@ const states = [
     scale: 5,
     position: { x: 0.2, y: 0.1, z: 0 },
   },
-  { rotation: { x: 0, y: 0, z: 0 }, scale: 8, position: { x: 0, y: 0, z: 0 } },
+  {
+    rotation: { x: 0, y: -Math.PI * 2, z: 0 },
+    scale: 8,
+    position: { x: 0, y: 0, z: 0 },
+  },
 ];
 
 const interpolateStates = (progress: number) => {
@@ -212,9 +224,9 @@ const onReady = (args: LoadEventData) => {
 
   const numberOfHearts = 40;
 
-  const xRange = { min: -2, max: 2 };
-  const yRange = { min: -2, max: 2 };
-  const zRange = { min: -2, max: -1 };
+  const xRange = { min: -3, max: 3 };
+  const yRange = { min: -3, max: 3 };
+  const zRange = { min: -3, max: -2 };
 
   const updateHearts = () => {
     for (let i = 0; i < numberOfHearts; i++) {
