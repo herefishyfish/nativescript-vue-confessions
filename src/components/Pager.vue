@@ -36,7 +36,7 @@ const onPagerLoaded = (args: LoadEventData) => {
       <Label class="font-bold text-3xl text-stone-900">Third</Label>
     </PagerItem>
     <PagerItem>
-      <Label class="font-bold text-3xl text-stone-900">Fourth</Label>
+      <Label class="font-bold text-3xl text-stone-900">Fourth!!</Label>
     </PagerItem>
   </Pager>
 </template>

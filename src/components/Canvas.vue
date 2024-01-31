@@ -334,5 +334,5 @@ const onReady = (args: LoadEventData) => {
 };
 </script>
 <template>
-  <Canvas @ready="onReady" class="bg-green-50"></Canvas>
+  <Canvas @ready="onReady" class="bg-green-50 w-full h-full"></Canvas>
 </template>
