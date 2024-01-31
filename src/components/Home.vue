@@ -3,7 +3,7 @@ import {
 ref
 } from 'nativescript-vue';
 import Canvas from './Canvas.vue';
-import Pager from './Pager.vue';
+import Content from './Content.vue';
 
 const progress = ref(0);
 const updateProgress = (newProgress: number) => {
@@ -20,7 +20,7 @@ const updateProgress = (newProgress: number) => {
 
       <GridLayout rows="*">
         <Canvas :progress="progress" />
-        <Pager @updateIndex="updateProgress" />
+        <Content @updateIndex="updateProgress" />
       </GridLayout>
     </Page>
   </Frame>

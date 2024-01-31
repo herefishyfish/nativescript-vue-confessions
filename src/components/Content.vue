@@ -11,6 +11,7 @@ const emits = defineEmits(["updateIndex"]);
 
 const onPagerLoaded = (args: LoadEventData) => {
   const pager = args.object as Pager;
+  console.log("Pager loaded");
   pager.on("scroll", (args: any) => {
     currentIndex.value = args["currentPosition"];
     emits("updateIndex", currentIndex.value);
@@ -18,7 +19,7 @@ const onPagerLoaded = (args: LoadEventData) => {
 };
 </script>
 <template>
-  <Pager @loaded="onPagerLoaded" height="100%" peaking="30" spacing="10">
+  <Pager @loaded="onPagerLoaded" class="w-full h-full" peaking="30" android:spacing="10">
     <PagerItem>
       <StackLayout verticalAlignment="center">
         <Label class="card font-bold text-center text-8xl text-stone-900 m-0 p-0">Vue!</Label>
@@ -26,7 +27,7 @@ const onPagerLoaded = (args: LoadEventData) => {
     </PagerItem>
     <PagerItem>
       <StackLayout>
-        <Label textWrap="true" class="font-bold text-3xl text-stone-900">
+        <Label textWrap="true" class="font-bold text-8xl text-stone-900">
           <!-- Hello Vue from NativeScript -->
           Hello, Vue!
         </Label>

@@ -193,6 +193,8 @@ const onReady = (args: LoadEventData) => {
   const width: any = canvas.width;
   const height: any = canvas.height;
 
+  canvas.ignoreTouchEvents = true;
+
   if (!ctx) {
     console.error("No context");
     return;
@@ -212,6 +214,8 @@ const onReady = (args: LoadEventData) => {
   const ambLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambLight);
 
+  setTimeout(() => {
+
   const loader = new GLTFLoader();
   loader.load("~/assets/vue_logo.glb", (gltf: any) => {
     vueLogo = gltf.scene;
@@ -219,6 +223,7 @@ const onReady = (args: LoadEventData) => {
     interpolateStates(props.progress);
     animate(0);
   });
+}, 0)
 
   const heartShape = makeHeartShape();
 
