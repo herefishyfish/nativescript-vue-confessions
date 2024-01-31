@@ -77,6 +77,10 @@ const states = [
 ];
 
 const interpolateStates = (progress: number) => {
+  if(progress < 0 || progress > states.length - 1) {
+    return;
+  }
+
   if (vueLogo) {
     const stateIndex = Math.floor(progress);
     const nextStateIndex =
@@ -209,7 +213,7 @@ const onReady = (args: LoadEventData) => {
   camera.position.z = 5;
 
   const dirLight = new THREE.DirectionalLight(0xffbb99, 1);
-  dirLight.position.set(30, 80, 30);
+  dirLight.position.set(30, 60, 30);
   scene.add(dirLight);
   const ambLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambLight);
