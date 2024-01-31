@@ -248,12 +248,16 @@ const onReady = (args: LoadEventData) => {
           y: Math.random() * (yRange.max - yRange.min) + yRange.min,
           z: Math.random() * (zRange.max - zRange.min) + zRange.min,
         };
-        mesh.position.set(position.x, position.y, position.z);
         mesh.scale.set(size * 0.01, size * 0.01, size * 0.01);
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         material.transparent = true;
-        material.opacity = 0.7;
+        material.opacity = 0.55;
+        mesh.position.set(
+          position.x + Math.sin(delta) * spread,
+          position.y + Math.cos(delta) * spread,
+          position.z + Math.cos(delta) * spread
+        );
 
         hearts.push({
           delta,
