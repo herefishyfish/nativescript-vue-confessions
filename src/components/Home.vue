@@ -20,7 +20,7 @@ const updateProgress = (newProgress: number) => {
 
       <GridLayout rows="*">
         <Canvas :progress="progress" />
-        <!-- <Pager @updateIndex="updateProgress" /> -->
+        <Pager @updateIndex="updateProgress" />
       </GridLayout>
     </Page>
   </Frame>
