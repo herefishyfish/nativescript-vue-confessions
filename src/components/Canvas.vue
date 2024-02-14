@@ -206,7 +206,9 @@ const onReady = (args: LoadEventData) => {
 
   renderer = new THREE.WebGLRenderer({
     context: ctx,
+    antialias: true,
   });
+  renderer.setClearColor(0xf0fdf4);
 
   camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
 
@@ -218,8 +220,6 @@ const onReady = (args: LoadEventData) => {
   const ambLight = new THREE.AmbientLight(0xffffff, 1);
   scene.add(ambLight);
 
-  setTimeout(() => {
-
   const loader = new GLTFLoader();
   loader.load("~/assets/vue_logo.glb", (gltf: any) => {
     vueLogo = gltf.scene;
@@ -227,8 +227,6 @@ const onReady = (args: LoadEventData) => {
     interpolateStates(props.progress);
     animate(0);
   });
-}, 0)
-
   const heartShape = makeHeartShape();
 
   const numberOfHearts = 40;
@@ -343,5 +341,5 @@ const onReady = (args: LoadEventData) => {
 };
 </script>
 <template>
-  <Canvas @ready="onReady" class="bg-green-50 w-full h-full"></Canvas>
+  <Canvas @ready="onReady" class="w-full h-full"></Canvas>
 </template>
