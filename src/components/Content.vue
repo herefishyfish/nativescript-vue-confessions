@@ -44,7 +44,8 @@ const onPagerLoaded = (args: LoadEventData) => {
 
 <style>
   .card {
-    background-color: rgba(255, 255, 255, 0.8);
+    /*   // renderer.setClearColor(0xf0fdf4); */
+    /* background-color: rgba(255, 255, 255, 0.8); */
     border-radius: 10;
   }
 </style>

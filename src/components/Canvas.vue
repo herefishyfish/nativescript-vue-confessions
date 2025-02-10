@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Canvas } from "@nativescript/canvas";
 import { LoadEventData } from "@nativescript/core";
-import { registerElement, ref, watch } from "nativescript-vue";
+import { registerElement, watch } from "nativescript-vue";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
@@ -192,10 +192,12 @@ const makeHeartShape = () => {
 };
 
 const onReady = (args: LoadEventData) => {
-  const canvas = args.object as Canvas;
+  const canvas = (args.object as Canvas);
+
+  canvas.width = canvas.clientWidth * 2.625;
+  canvas.height = canvas.clientHeight * 2.625;
+
   const ctx = canvas.getContext("webgl2");
-  const width: any = canvas.width;
-  const height: any = canvas.height;
 
   canvas.ignoreTouchEvents = true;
 
@@ -208,9 +210,8 @@ const onReady = (args: LoadEventData) => {
     context: ctx,
     antialias: true,
   });
-  renderer.setClearColor(0xf0fdf4);
 
-  camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(45, canvas.width / canvas.height, 0.1, 1000);
 
   camera.position.z = 5;
 
@@ -341,5 +342,5 @@ const onReady = (args: LoadEventData) => {
 };
 </script>
 <template>
-  <Canvas @ready="onReady" class="w-full h-full"></Canvas>
+  <Canvas @ready="onReady" />
 </template>
